@@ -26,9 +26,10 @@ package cherry;
 /**
  *
  * @author SoraKatadzuma
+ * @version 0.0.0.1
  */
 public class Cherry {
-
+    
     /**
      * @param args the command line arguments
      */
