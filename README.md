@@ -1,3 +1,5 @@
+![Cherry Logo](docs/images/cherry.png)
+
 # Cherry
 Cherry is a 4th generation computation language designed to tie up loose ends in
 the community of programming by inheriting some of the best implementations of
