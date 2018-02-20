@@ -6,7 +6,7 @@ interesting things. **This repository houses the distribution and source of the
 compiler for the language**.
 
 ## Goals of Cherry
-The goals of cherry are simple: provide an Object Oriented Programming (OOP)
+The goals of Cherry are simple: provide an Object Oriented Programming (OOP)
 syntax that is widely accepted, such as those as C, C++, C#, Java, and other C
 related languages; provide a rich standard library and easy to use classes and
 structures; and powerful implementations of the former.
@@ -86,10 +86,10 @@ mention that the micro parsers can be independently called, that they do not
 follow a specific structure like a generator would need. This can typically lead
 to less things to code, but generators are often smaller than handwritten parsers
 are anyways. The backend is comprised of a intermediate generator (generates
-assembly three or four code) and an NASM assembler and linker which will be used
-to assembly and link the assembly produced by the compiler intermediate stage.
-This will cause a slow up in the compiler but it is worth it for the amount of
-power the language provides.
+assembly three address or four address code) and an NASM assembler and linker
+which will be used to assembly and link the assembly produced by the compiler
+intermediate stage. This will cause a slow up in the compiler but it is worth it
+for the amount of power the language provides.
 
 ## Contact and collaboration
 If you would like to join the effort in helping build Cherry then you can contact
