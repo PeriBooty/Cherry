@@ -71,7 +71,9 @@ public class Lexer {
     /**
      * @return The tokens collected by this {@code Lexer}.
      */
-    public List<Token> getTokens() {
-       return tokens;
+    public List<Token> lex() {
+        // lexing code goes here.
+        
+        return tokens;
     }
 }
