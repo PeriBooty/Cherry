@@ -33,8 +33,7 @@ import java.util.logging.Logger;
 
 /**
  * The {@code CLI} class is responsible for handling and beginning the command
- * line operations, such as flag and file checks and sending files off to be
- * parsed by their own respective parsers.
+ * line operations such as flag and file checks.
  *
  * @author SoraKatadzuma
  * @version 0.0.0.1
@@ -42,8 +41,8 @@ import java.util.logging.Logger;
 public final class CLI {
     /**
      * This method is responsible for handling all command line operations, these
-     * operations are mainly: collect flags and files, have them checked by their
-     * respective handlers, and then finally sending the files off to be parsed.
+     * operations are mainly: collect flags and files and have them checked by
+     * their respective handlers.
      * 
      * @param args The command line arguments.
      */

@@ -41,7 +41,8 @@ import java.util.logging.Logger;
 /**
  * This class is strictly responsible for starting the compiler, and starting
  * any off shoot processes that return all the way to the main thread. These
- * processes include: The {@code CLI#handleCLOPS(String...)},
+ * processes include: The {@code CLI#handleCLOPS(String...)}, calling the threader
+ * to invoke all necessary threads to execute the given tasks,
  * {@code SemanticAnalyzer#analyze(List<Future<ParseTree>>))}, and
  * {@code CodeGenerator#generate(ParseTree...)}. All other processes are called
  * by internal means in order to keep the main function rather clean, also, it
@@ -60,6 +61,7 @@ public final class Cherry {
     public static void main(String[] args) {
         CLI.handleCLOPS(args);
         
+        ////////////////// Parser calls ///////////////////////
         // After file registry, send registered files off to be parsed.
         Collection<Callable<ParseTree>> tasks = new ArrayList<>();
         
@@ -81,5 +83,8 @@ public final class Cherry {
         } catch (InterruptedException ex) {
             Logger.getLogger(Cherry.class.getName()).log(Level.WARNING, "Thread interruption", ex);
         }
+        ////////////////// End Parser calls ///////////////////
+        
+        // continue code here.
     }
 }
