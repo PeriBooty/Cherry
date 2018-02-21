@@ -27,7 +27,7 @@ However the running example for the moment is this little snippet:
 use System.Console;       # Namespace directives include all namespace objects
 use System.Type.Object;   # Class directives include just the class object it references
 
-namespace Test;           # Namespaces work for a full file or until parsing reaches namespace.
+namespace Test;           # Namespaces work for a full file or until parsing reaches another namespace.
 
 @Annotation               # Example annotation
 
