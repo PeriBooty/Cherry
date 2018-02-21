@@ -23,8 +23,11 @@
  */
 package cherry.frontend.parser;
 
+import cherry.frontend.grammar.Token;
+import cherry.frontend.lexer.Lexer;
 import cherry.util.object.ParseTree;
 import java.io.File;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 /**
@@ -34,11 +37,20 @@ import java.util.concurrent.Callable;
  * @version 0.0.0.1
  */
 public final class Parser implements Callable<ParseTree> {
+    /** The file this parser will be parsing. */
+    private final File file;
+    /** The list of tokens found by the lexer. */
+    private List<Token> tokens;
+    /** The current token being parsed. */
+    private Token token;
+    
     /**
+     * Constructs a new {@code Parser} that will parse the given file.
+     * 
      * @param file The file this {@code Parser} will parse.
      */
     public Parser(File file) {
-        
+        this.file = file;
     }
     
     /**
@@ -50,6 +62,9 @@ public final class Parser implements Callable<ParseTree> {
      */
     @Override
     public ParseTree call() throws Exception {
+        // Lex the file for tokens and start the actual parsing process.
+        tokens = new Lexer(file).lex();
+        
         return null; // only temporary
     }
 }
