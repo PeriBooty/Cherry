@@ -23,7 +23,20 @@
  */
 package cherry;
 
+import cherry.frontend.parser.Parser;
 import cherry.util.handler.command.CLI;
+import cherry.util.handler.file.FileHandler;
+import cherry.util.object.ParseTree;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class is strictly responsible for starting the compiler, and starting
@@ -38,13 +51,35 @@ import cherry.util.handler.command.CLI;
  * @version 0.0.0.1
  */
 public final class Cherry {
+    /** Powerhouse of this compiler. */
+    private static final ExecutorService THREADER = Executors.newCachedThreadPool(Executors.defaultThreadFactory());
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         CLI.handleCLOPS(args);
         
-        // continue work here.
+        // After file registry, send registered files off to be parsed.
+        Collection<Callable<ParseTree>> tasks = new ArrayList<>();
+        
+        for (File file : FileHandler.registeredFiles()) {
+            tasks.add(new Parser(file));
+        }
+        
+        // A place to store our results.
+        Collection<Future<ParseTree>> results;
+        
+        // Sending each task into it's own thread to be ran.
+        try {
+            // Invoke all threads
+            results = THREADER.invokeAll(tasks);
+            // Call shutdown directly after
+            THREADER.shutdown();
+            // Wait for all threads to finish.
+            THREADER.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Cherry.class.getName()).log(Level.WARNING, "Thread interruption", ex);
+        }
     }
-    
 }
