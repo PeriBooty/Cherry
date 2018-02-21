@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2018 Dell.
+ * Copyright 2018 SoraKatadzuma.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,21 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cherry.frontend.lexer;
+package cherry.frontend.grammar;
 
 /**
- *
- * @author Dell
+ * Each of the values in this enum class represent a single terminal in the
+ * grammar of this language, this is used to help type tokens and help the
+ * parser match the input to the grammatical structure of this language.
+ * 
+ * @author SoraKatadzuma
+ * @author Abdur-rahmaanJ
+ * @version 0.0.0.1
  */
-public class Token 
-{
-    String value;
-    String type;
-    int line;
-    Token(String val, String typ, int lin)
-    {
-        value = val;
-        type = typ;
-        line = lin;
-    }
+public enum Type {
+     placeholder
 }

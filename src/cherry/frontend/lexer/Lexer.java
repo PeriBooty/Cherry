@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2018 Dell.
+ * Copyright 2018 SoraKatadzuma.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,43 +23,55 @@
  */
 package cherry.frontend.lexer;
 
-// imports
-import cherry.frontend.lexer.Token;
+import cherry.frontend.grammar.Token;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
- *
- * @author Dell
+ * /// Class Description ///
+ * 
+ * @author SoraKatadzuma
+ * @author Abdur-rahmaanJ
+ * @version 0.0.0.1
  */
-
-public class Lexer 
-{
-    private String source;
-    private int line;
+public class Lexer {
+    /***/
+    private final File source;
+    /***/
+    private int line = 1;
+    /***/
+    private int column = 1;
+    /***/
     private final List<Token> tokens = new ArrayList<>();
-    private int current = 0;
     
-    Lexer(String src)
-    {
-        source = src;
+    /**
+     * 
+     * @param source
+     */
+    public Lexer(File source) {
+        this.source = source;
     }
     
-    private char getNext() 
-    {
-        current++;
-        return source.charAt(current - 1); 
+    /**
+     * TODO: Fix this so that we read from the file {@code source}.
+     */
+    private char getNext() {
+        column++;
+        return ' '; 
     }
     
-    public String[] getLexemes()
-    {
+    /**
+     * TODO: Change this, it's useless.
+     */
+    public String[] getLexemes() {
        String[] lexemes = {}; 
        return lexemes;
     }
     
-    public List<Token> getTokens()
-    {
-    
+    /**
+     * @return The tokens collected by this {@code Lexer}.
+     */
+    public List<Token> getTokens() {
        return tokens;
     }
 }
