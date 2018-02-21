@@ -1,7 +1,7 @@
 # Things to do:
 - [ ] Grammar.md
-- [ ] Command Line Interface *CLI*
-- [ ] File and Flag handlers for the CLI
+- [x] Command Line Interface *CLI*
+- [x] File and Flag handlers for the CLI
 - [ ] Source Reader
 - [ ] Website
 - [ ] Documentation
