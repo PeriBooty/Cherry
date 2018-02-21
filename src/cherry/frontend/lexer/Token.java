@@ -27,6 +27,15 @@ package cherry.frontend.lexer;
  *
  * @author Dell
  */
-public class Token {
-    
+public class Token 
+{
+    String value;
+    String type;
+    int line;
+    Token(String val, String typ, int lin)
+    {
+        value = val;
+        type = typ;
+        line = lin;
+    }
 }

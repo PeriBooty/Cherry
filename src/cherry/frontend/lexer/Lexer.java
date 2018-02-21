@@ -23,10 +23,43 @@
  */
 package cherry.frontend.lexer;
 
+// imports
+import cherry.frontend.lexer.Token;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Dell
  */
-public class Lexer {
+
+public class Lexer 
+{
+    private String source;
+    private int line;
+    private final List<Token> tokens = new ArrayList<>();
+    private int current = 0;
     
+    Lexer(String src)
+    {
+        source = src;
+    }
+    
+    private char getNext() 
+    {
+        current++;
+        return source.charAt(current - 1); 
+    }
+    
+    public String[] getLexemes()
+    {
+       String[] lexemes = {}; 
+       return lexemes;
+    }
+    
+    public List<Token> getTokens()
+    {
+    
+       return tokens;
+    }
 }
