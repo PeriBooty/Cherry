@@ -21,30 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cherry;
-
-import cherry.util.handler.command.CLI;
+package cherry.util.exception;
 
 /**
- * This class is strictly responsible for starting the compiler, and starting
- * any off shoot processes that return all the way to the main thread. These
- * processes include: The {@code CLI#handleCLOPS(String...)},
- * {@code SemanticAnalyzer#analyze(List<Future<ParseTree>>))}, and
- * {@code CodeGenerator#generate(ParseTree...)}. All other processes are called
- * by internal means in order to keep the main function rather clean, also, it
- * makes it easy to follow the flow of control.
- *
+ * This exception defines one that can occur during file handling, and it
+ * represents specifically when there is an invalid extension for a particular
+ * file as the compiler for Cherry only accepts ".cherry", ".ch", and ".ry" file
+ * extensions.
+ * 
  * @author SoraKatadzuma
- * @version 0.0.0.1
+ * @version alpha 0.0.0.1
  */
-public final class Cherry {
+public class InvalidExtensionException extends Exception {
+    /** Constructs a new exception. */
+    public InvalidExtensionException() {}
+
     /**
-     * @param args the command line arguments
+     * @param err_message The message to report with the error.
      */
-    public static void main(String[] args) {
-        CLI.handleCLOPS(args);
-        
-        // continue work here.
+    public InvalidExtensionException(String err_message) {
+        super(err_message);
     }
-    
 }

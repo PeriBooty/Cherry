@@ -21,30 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cherry;
-
-import cherry.util.handler.command.CLI;
+package cherry.util.handler.flag;
 
 /**
- * This class is strictly responsible for starting the compiler, and starting
- * any off shoot processes that return all the way to the main thread. These
- * processes include: The {@code CLI#handleCLOPS(String...)},
- * {@code SemanticAnalyzer#analyze(List<Future<ParseTree>>))}, and
- * {@code CodeGenerator#generate(ParseTree...)}. All other processes are called
- * by internal means in order to keep the main function rather clean, also, it
- * makes it easy to follow the flow of control.
- *
+ * This class is responsible for checking flags for correctness, whether they
+ * exist, and whether or not they applicable to any of the current files or
+ * current compiler configurations.
+ * 
  * @author SoraKatadzuma
- * @version 0.0.0.1
+ * @version alpha 0.0.0.1
  */
-public final class Cherry {
+public final class FlagHandler {
+
     /**
-     * @param args the command line arguments
+     * @param flags The flags that will be examined.
      */
-    public static void main(String[] args) {
-        CLI.handleCLOPS(args);
+    public FlagHandler(String... flags) {
         
-        // continue work here.
     }
-    
 }
