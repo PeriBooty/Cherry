@@ -37,7 +37,9 @@ public final class NonTerminal extends Category {
      * 
      * @param value The value that will represent this {@code NonTerminal}.
      */
-    public NonTerminal(String value) {
+    private NonTerminal(String value) {
         super(value, false);
     }
+    
+    /*************************** Declarations *********************************/
 }

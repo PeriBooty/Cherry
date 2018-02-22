@@ -39,7 +39,9 @@ public final class Terminal extends Category {
      * 
      * @param value The value that represents this {@code Terminal}.
      */
-    public Terminal(String value) {
+    private Terminal(String value) {
         super(value, true);
     }
+    
+    /*************************** Declarations *********************************/
 }
