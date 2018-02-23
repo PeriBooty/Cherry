@@ -95,7 +95,7 @@ for the amount of power the language provides.
 
 ## Contact and collaboration
 If you would like to join the effort in helping build Cherry then you can contact
-me personally at [my email](dungeonsandanime@gmail.com) or at my Discord
+me personally at [my email](https://dungeonsandanime@gmail.com) or at my Discord
 [SoraKatadzuma#7406](https://discordapp.com). If you want to keep up with the
 work being done on Cherry from other than your own GitHub or email, then you can
 join our [Discord server](https://discordapp.com/channels/382078993505189888/382085275968602112).
