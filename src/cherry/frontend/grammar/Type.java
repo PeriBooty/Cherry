@@ -73,8 +73,6 @@ public enum Type {
     /** Void type. */ VOID,
     /** Short type. */ SHORT,
     /** Long type. */ LONG,
-    /** Signed subtype. */ SIGNED,
-    /** Unsigned subtype. */ UNSIGNED,
     /** Pointer subtype. */ PTR,
     /** Reference subtype. */ REF,
     /** Thread subtype. */ THREAD,
@@ -115,6 +113,8 @@ public enum Type {
     /** Logical equals. */ LEQ("=="),
     /** Less than operator. */ LESS("<"),
     /** More than operator. */ MORE(">"),
+    /** Less than or equal to operator. */ LESSEQ("<="),
+    /** More than or equal to operator. */ MOREQ(">="),
     /** Left shift binary operator. */ LSH("<<"),
     /** Right shift binary operator. */ RSH(">>"),
     /** Left shift and equal operator. */ LSHEQ("<<="),
@@ -143,7 +143,6 @@ public enum Type {
     /** Semi colon symbol. */ SMC(";"),
     /** Ternary operator. */ TERN("?"),
     /** Coalescing operator. */ COA("??"),
-    /** Annotation operator. */ ANN("@"),
     /** Comma symbol. */ COM(",");
 
     /** A map that makes it easier to reference the types. */
