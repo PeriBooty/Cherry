@@ -147,7 +147,8 @@ public enum Type {
     /** Semi colon symbol. */ SMC(";"),
     /** Ternary operator. */ TERN("?"),
     /** Coalescing operator. */ COA("??"),
-    /** Comma symbol. */ COM(",");
+    /** Comma symbol. */ COM(","),
+    /** Lambda arrow. */ LARR("~>");
 
     /** A map that makes it easier to reference the types. */
     private static final Map<String, Type> typeTable = new HashMap<>();
