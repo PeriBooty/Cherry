@@ -34,6 +34,8 @@ package cherry.frontend.grammar;
  * @version 0.0.0.1 
  */
 public enum Terminal implements Symbol {
+    /** This is used to show when the input can be empty or when something doesn't match, parsing can continue properly. */
+    EPSILON("\u03B5"),
     /** Represents an identifier of any kind in the token stream. */
     ID("id"),
     /** Represents any integer in the token stream. */

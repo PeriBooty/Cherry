@@ -32,7 +32,16 @@ package cherry.frontend.grammar;
  * @version 0.0.0.1
  */
 public enum NonTerminal implements Symbol {
-    DOCUMENT, START;
+    /** Represents the start of parsing. */
+    DOCUMENT,
+    /** Technical start of parsing. */
+    START,
+    /** Defines a namespace or object directive to include into the parsing and use of a file. */
+    DIRECTIVE,
+    /** Defines a namespace for the current code until the next namespace declaration. */
+    PACKAGING,
+    /** Represents the object types, {@code class, struct, enum, and interface}. */
+    OBJECT;
     
     /** The name of this {@code NonTerminal} in lowercase form. */
     public final String name = name().toLowerCase();
