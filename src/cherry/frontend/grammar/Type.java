@@ -91,6 +91,8 @@ public enum Type {
     /** Constant modifier. */ CONST,
     /** Immutable modifier. */ IMMUTABLE,
     /** Final modifier. */ FINAL,
+    /** Abstract modifier. */ ABSTRACT,
+    /** Override modifier. */ OVERRIDE,
     /** New keyword. */ NEW,
     /** This keyword. */ THIS,
     /** Super keyword. */ SUPER,
