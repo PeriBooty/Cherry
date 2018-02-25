@@ -23,8 +23,6 @@
  */
 package cherry.frontend.grammar;
 
-import java.util.List;
-
 /**
  * This class defines a single rule or production in the grammar of a language.
  * It contains a head and a body; the head consists of a single {@code NonTerminal}
@@ -60,7 +58,10 @@ import java.util.List;
  *
  * @author SoraKatadzuma
  * @version 0.0.0.1
+ * @deprecated Was added in error, but in case the error was itself an error, we
+ *      will leave this in.
  */
+@Deprecated
 public final class Rule {
     /** This is the head of this {@code Rule}. */
     public final NonTerminal head;
