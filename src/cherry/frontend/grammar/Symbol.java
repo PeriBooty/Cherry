@@ -24,18 +24,10 @@
 package cherry.frontend.grammar;
 
 /**
- * This class represents a single grammatical structure or scope as defined by a
- * particular rule in the grammar. {@code NonTerminal}s can be used as both the
- * head of a rule or production as well as part of the body of a rule or production.
+ * A simple and easy way to include both the {@code NonTerminal} and {@code Terminal}
+ * enum classes into a single Generic.
  * 
  * @author SoraKatadzuma
  * @version 0.0.0.1
  */
-public enum NonTerminal implements Symbol {
-    DOCUMENT, START;
-    
-    /** The name of this {@code NonTerminal} in lowercase form. */
-    public final String name = name().toLowerCase();
-    /** The index value of this {@code NonTerminal} making referencing easier. */
-    public final int index = ordinal();
-}
+public interface Symbol {}
