@@ -138,12 +138,20 @@ public enum Terminal implements Symbol {
     CONST("const"),
     /** Represents the modifier {@code immutable}. */
     IMMUTABLE("immutable"),
+    /** Represents the modifier {@code final}. */
+    FINAL("final"),
+    /** Represents the modifier {@code abstract}. */
+    ABSTRACT("abstract"),
+    /** Represents the modifier {@code override}. */
+    OVERRIDE("override"),
     /** Represents the keyword {@code new}. */
     NEW("new"),
     /** Represents the keyword {@code this}. */
     THIS("this"),
     /** Represents the keyword {@code super}. */
     SUPER("super"),
+    /** Represents the keyword {@code in}. */
+    IN("in"),
     /** Represents the symbol for addition. */
     ADD("+"),
     /** Represents the symbol for subtraction. */
@@ -241,7 +249,9 @@ public enum Terminal implements Symbol {
     /** Represents the symbol for performing a null coalescing operation. */
     COA("??"),
     /** Represents the symbol for list separation. */
-    COM(",");
+    COM(","),
+    /** Represents the symbol for a lambda expression. */
+    LARR("~>");
     
     /** The value of the given {@code Terminal}. */
     public final String value;
