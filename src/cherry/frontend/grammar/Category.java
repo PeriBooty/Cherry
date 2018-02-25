@@ -30,7 +30,11 @@ package cherry.frontend.grammar;
  * 
  * @author SoraKatadzuma
  * @version 0.0.0.1
+ * @deprecated Due to changes with how {@code NonTerminal}s and {@code Terminal}s
+ *      are handled in the grammar. This is however left for legacy and reuse if
+ *      necessary.
  */
+@Deprecated
 public abstract class Category {
     /** This is the value of this {@code Category}. */
     public final String value;
