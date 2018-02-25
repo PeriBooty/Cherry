@@ -63,7 +63,7 @@ public final class CLI {
             try {
                 FileHandler fileHandler = new FileHandler(files.toArray(new String[0]));
             } catch (Exception ex) {
-                Logger.getLogger(Cherry.class.getName()).log(Level.WARNING, ex.getMessage());
+                Logger.getLogger(Cherry.class.getName()).log(Level.WARNING, ex.getMessage(), ex);
             }
         });
         
