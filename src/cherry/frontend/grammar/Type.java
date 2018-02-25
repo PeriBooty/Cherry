@@ -96,6 +96,7 @@ public enum Type {
     /** New keyword. */ NEW,
     /** This keyword. */ THIS,
     /** Super keyword. */ SUPER,
+    /** In keyword. */ IN,
 
     /* Symbols */
     /** Addition symbol. */ ADD("+"),
