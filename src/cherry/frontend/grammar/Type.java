@@ -90,6 +90,7 @@ public enum Type {
     /** Static modifier. */ STATIC,
     /** Constant modifier. */ CONST,
     /** Immutable modifier. */ IMMUTABLE,
+    /** Final modifier. */ FINAL,
     /** New keyword. */ NEW,
     /** This keyword. */ THIS,
     /** Super keyword. */ SUPER,
