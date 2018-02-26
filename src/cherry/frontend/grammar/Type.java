@@ -47,6 +47,9 @@ public enum Type {
     /** Defines any number that is considered 2 bytes short. */ SKINNY,
     /** Defines a string literal. */ STRL,
     /** Defines a character literal. */ CHRL,
+    /** Defines a Null value. */ NULL,
+    /** Defines a True value. */ TRUE,
+    /** Defines a False value. */ FALSE,
     /** Defines any character sequence that is undefined by this class. */ UNDEF,
     /** Defines the end of the token stream. */ EOTS,
 
@@ -97,9 +100,6 @@ public enum Type {
     /** This keyword. */ THIS,
     /** Super keyword. */ SUPER,
     /** In keyword. */ IN,
-    /** Null keyword. */ NULL,
-    /** True keyword. */ TRUE,
-    /** False keyword. */ FALSE,
 
     /* Symbols */
     /** Addition symbol. */ ADD("+"),
