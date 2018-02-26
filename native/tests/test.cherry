@@ -1,0 +1,12 @@
+use System;
+use System.Console;
+
+# Comment
+
+[Attribute] global Object:Castable class <Type:T> Class {
+    local int number = 0x03;
+
+    global static void Main(string... args) {
+        Integer Class integer = new Class();
+    }
+}

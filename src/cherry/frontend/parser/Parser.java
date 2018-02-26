@@ -65,6 +65,8 @@ public final class Parser implements Callable<ParseTree> {
         // Lex the file for tokens and start the actual parsing process.
         tokens = new Lexer(file).lex();
         
+        for (Token tok : tokens) System.out.println(tok);
+        
         return null; // only temporary
     }
 }
