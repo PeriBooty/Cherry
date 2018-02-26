@@ -97,6 +97,9 @@ public enum Type {
     /** This keyword. */ THIS,
     /** Super keyword. */ SUPER,
     /** In keyword. */ IN,
+    /** Null keyword. */ NULL,
+    /** True keyword. */ TRUE,
+    /** False keyword. */ FALSE,
 
     /* Symbols */
     /** Addition symbol. */ ADD("+"),
