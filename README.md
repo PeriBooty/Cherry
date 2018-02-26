@@ -29,10 +29,8 @@ use System.Type.Object;   # Class directives include just the class object it re
 
 namespace Test;           # Namespaces work for a full file or until parsing reaches another namespace.
 
-@Annotation               # Example annotation
-
-@Template(T)
-global class Example {
+[Annotation]              # Example annotation
+global class <T> Example {
     # Constructor
     global Example(T tempex) {
         this.tempex = tempex;
@@ -55,8 +53,7 @@ global class Example {
     }
 
     # Method with template example
-    @Template(R : System.Type.Number)
-    global R add(R... nums) {
+    global <System.Type.Number:R> R add(R... nums) {
         R result = 0;
 
         for (System.Type.Number number in nums) {
@@ -67,7 +64,7 @@ global class Example {
     }
 
     # Main method
-    global static void Main(String... args) {
+    global static void Main(string... args) {
         Float Example ex = new Example(0.123);
         Console.write(ex.add(98, -234.673, 0x23, 0b10100100, ex.tempex));
     }
