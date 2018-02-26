@@ -37,7 +37,7 @@ package cherry.frontend.grammar;
  * 
  * @author SoraKatadzuma
  * @author Abdur-rahmaanJ
- * @version 0.0.0.1
+ * @version 0.0.0.2
  */
 public final class Token {
     /** The type of terminal this {@code Token} represents. */
@@ -68,5 +68,15 @@ public final class Token {
         this.filename = filename;
         this.line = line;
         this.column = column;
+    }
+    
+    /**
+     * @return The string form of the token.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "FILE: \"" + filename + "\" TYPE: \"" + type + "\" VALUE: \"" +
+                value + "\" AT: " + line + ":" + column;
     }
 }

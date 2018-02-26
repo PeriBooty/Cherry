@@ -31,7 +31,7 @@ package cherry.frontend.grammar;
  * {@code Grammar} classes.
  * 
  * @author SoraKatadzuma
- * @version 0.0.0.1 
+ * @version 0.0.0.2
  */
 public enum Terminal implements Symbol {
     /** This is used to show when the input can be empty or when something doesn't match, parsing can continue properly. */

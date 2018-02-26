@@ -33,7 +33,7 @@ import java.util.Map;
  *
  * @author SoraKatadzuma
  * @author Abdur-rahmaanJ
- * @version 0.0.0.1
+ * @version 0.0.0.2
  */
 public enum Type {
     /* Parser Dependent types. */

@@ -30,7 +30,7 @@ package cherry.util.exception;
  * extensions.
  * 
  * @author SoraKatadzuma
- * @version 0.0.0.1
+ * @version 0.0.0.2
  */
 public class InvalidExtensionException extends Exception {
     /** Constructs a new exception. */

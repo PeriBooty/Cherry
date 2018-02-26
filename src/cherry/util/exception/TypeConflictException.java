@@ -29,7 +29,7 @@ import cherry.frontend.grammar.Type;
  * /// Class Description ///
  * 
  * @author SoraKatadzuma
- * @version alpha 0.0.0.1
+ * @version alpha 0.0.0.2
  */
 public final class TypeConflictException extends Exception {
     public TypeConflictException(Type one, Type two) {

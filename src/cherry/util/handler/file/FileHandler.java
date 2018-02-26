@@ -34,7 +34,7 @@ import java.nio.file.LinkOption;
  * file extension as well as whether the file exists.
  * 
  * @author SoraKatadzuma
- * @version 0.0.0.1
+ * @version 0.0.0.2
  */
 public final class FileHandler {
     /**

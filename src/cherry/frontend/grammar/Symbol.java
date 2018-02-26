@@ -28,6 +28,6 @@ package cherry.frontend.grammar;
  * enum classes into a single Generic.
  * 
  * @author SoraKatadzuma
- * @version 0.0.0.1
+ * @version 0.0.0.2
  */
 public interface Symbol {}

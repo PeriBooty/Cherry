@@ -38,7 +38,7 @@ import java.util.List;
  * /// Class Description ///
  *
  * @author SoraKatadzuma
- * @version alpha 0.0.0.1
+ * @version 0.0.0.2
  */
 public final class Lexer {
     /** We keep a simple reference to the beginning of any file for convenience. */

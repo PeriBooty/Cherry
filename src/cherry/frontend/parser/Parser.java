@@ -34,7 +34,7 @@ import java.util.concurrent.Callable;
  * /// Class Description ///
  * 
  * @author SoraKatadzuma
- * @version 0.0.0.1
+ * @version 0.0.0.2
  */
 public final class Parser implements Callable<ParseTree> {
     /** The file this parser will be parsing. */

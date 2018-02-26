@@ -29,7 +29,7 @@ package cherry.util.handler.flag;
  * current compiler configurations.
  * 
  * @author SoraKatadzuma
- * @version 0.0.0.1
+ * @version 0.0.0.2
  */
 public final class FlagHandler {
 

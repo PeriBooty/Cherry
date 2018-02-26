@@ -49,7 +49,7 @@ import java.util.logging.Logger;
  * makes it easy to follow the flow of control.
  *
  * @author SoraKatadzuma
- * @version 0.0.0.1
+ * @version 0.0.0.2
  */
 public final class Cherry {
     /** Powerhouse of this compiler. */

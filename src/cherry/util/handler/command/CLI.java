@@ -36,7 +36,7 @@ import java.util.logging.Logger;
  * line operations such as flag and file checks.
  *
  * @author SoraKatadzuma
- * @version 0.0.0.1
+ * @version 0.0.0.2
  */
 public final class CLI {
     /**
