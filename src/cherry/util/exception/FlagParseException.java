@@ -24,28 +24,27 @@
 package cherry.util.exception;
 
 /**
- * Represents an exception where the {@code FlagHandler} finds a string that is
- * not a valid flag.
+ * Represents when there is a "parsing error" when attempting to parse a flag.
  * 
  * @author SoraKatadzuma
  * @version 0.0.0.2
  */
-public class FlagDoesNotExistException extends Exception {
+public class FlagParseException extends Exception {
 
     /**
-     * Creates a new instance of <code>FlagDoesNotExistException</code> without
-     * detail message.
+     * Creates a new instance of <code>FlagParseException</code> without detail
+     * message.
      */
-    public FlagDoesNotExistException() {
+    public FlagParseException() {
     }
 
     /**
-     * Constructs an instance of <code>FlagDoesNotExistException</code> with the
+     * Constructs an instance of <code>FlagParseException</code> with the
      * specified detail message.
      *
-     * @param flagname The name of the flag that was found non-existent.
+     * @param msg the detail message.
      */
-    public FlagDoesNotExistException(String flagname) {
-        super("The flag: " + flagname + "does not exist.");
+    public FlagParseException(String msg) {
+        super(msg);
     }
 }
