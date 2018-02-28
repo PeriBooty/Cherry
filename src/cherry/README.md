@@ -2,10 +2,10 @@
 - [ ] Grammar.md
 - [x] Command Line Interface *CLI*
 - [x] File and Flag handlers for the CLI
-- [ ] Source Reader
+- [x] Source Reader
 - [ ] Website
 - [ ] Documentation
-- [ ] Lexer
+- [x] Lexer
 - [ ] Parser
 - [ ] Semantic Analyzer
 - [ ] Parse tree implementation
