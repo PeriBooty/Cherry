@@ -40,8 +40,8 @@ public enum NonTerminal implements Symbol {
     DIRECTIVE,
     /** Defines a namespace for the current code until the next namespace declaration. */
     PACKAGING,
-    /** Represents the object types, {@code class, struct, enum, and interface}. */
-    OBJECT;
+    /** Defines a single identifier or a packaged identifier. */
+    TYPE_NAME;
     
     /** The name of this {@code NonTerminal} in lowercase form. */
     public final String name = name().toLowerCase();

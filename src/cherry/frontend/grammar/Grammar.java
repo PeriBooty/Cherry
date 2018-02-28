@@ -64,15 +64,54 @@ import java.util.Map;
  * @see cherry.frontend.grammar.Rule
  */
 public enum Grammar {
-    /** This is the rule for the very beginning of the parsing operation. */
+    /**
+     * This is the rule for the very beginning of the parsing operation.
+     * <br> Rule:
+     * <pre> &lt;document&gt; ::= &lt;start&gt; &lt;document&gt; $ | ε </pre>
+     */
     DOCUMENT(new Symbol[][] {
         { NonTerminal.START, NonTerminal.DOCUMENT, Terminal.EOTS },
         { Terminal.EPSILON }
     }),
-    /** This is the technical start of parsing in which actual constructs begin to be broken down. */
+    /**
+     * This is the technical start of parsing in which actual constructs begin to be broken down.
+     * <br> Rule:
+     * <pre> &lt;start&gt; ::= &lt;directive&gt; | &lt;packaging&gt; | ε </pre>
+     */
     START(new Symbol[][] {
-        { NonTerminal.DIRECTIVE }, { NonTerminal.PACKAGING },
-        { NonTerminal.OBJECT }, { Terminal.EPSILON }
+        { NonTerminal.DIRECTIVE }, { NonTerminal.PACKAGING },  { Terminal.EPSILON }
+    }),
+    /**
+     * This represents the namespace or object directive that will be included in the current parse.
+     * <br> Rule:
+     * <pre> &lt;directive&gt; ::= "use" &lt;type-name&gt; ";" | ε  </pre>
+     */
+    DIRECTIVE(new Symbol[][] {
+        {
+            Terminal.USE, Terminal.ID,
+            NonTerminal.TYPE_NAME, Terminal.SMC
+        }
+    }),
+    /**
+     * This represents the declaration of the namespace for the current code block.
+     * <br> Rule:
+     * <pre> &lt;packaging&gt; ::= "namespace" &lt;type-name&gt; ";" | ε </pre>
+     */
+    PACKAGING(new Symbol[][] {
+        {
+            Terminal.NAMESPACE, Terminal.ID,
+            NonTerminal.TYPE_NAME, Terminal.SMC
+        }
+    }),
+    /**
+     * This represents a structure where an identifier is the call for a directive
+     * or packaging statement. However, identifiers aren't the only thing as we
+     * could be calling an identifier inside a namespace.
+     * <br> Rule:
+     * <pre> &lt;type-name&gt; ::= "id" | &lt;type-name&gt; "." "id" </pre>
+     */
+    TYPE_NAME(new Symbol[][] {
+        { Terminal.ID }, { NonTerminal.TYPE_NAME, Terminal.DOT, Terminal.ID }
     });
     
     /**
@@ -83,6 +122,8 @@ public enum Grammar {
     public static final Map<NonTerminal, Integer> rules = new EnumMap<>(NonTerminal.class);
     /** The list of {@code Category} that represents the body of the representative rule. */
     public final Symbol[][] bodies;
+    /** The name of this rule, specifically named after the {@code NonTerminal} that it represents. */
+    public final String name = name().toLowerCase();
     
     /**
      * Constructs a new {@code Grammar} rule with the given body.
