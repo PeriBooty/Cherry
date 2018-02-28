@@ -68,7 +68,11 @@ public final class CLI {
         });
         
         Thread flagThread = new Thread(() -> {
-            FlagHandler flagHandler = new FlagHandler(flags.toArray(new String[0]));
+            try {
+                FlagHandler flagHandler = new FlagHandler(flags.toArray(new String[0]));
+            } catch (Exception ex) {
+                Logger.getLogger(CLI.class.getName()).log(Level.WARNING, ex.getMessage(), ex);
+            }
         });
         
         // Starting the threads
