@@ -23,12 +23,71 @@
  */
 package cherry.util.handler.flag;
 
+import cherry.util.exception.FlagParseException;
+import cherry.util.handler.flag.FlagHandler.RuntimeFlag;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Parses command line flags that have the ability to contain embedded data.
  * 
  * @author SoraKatadzuma
- * @version 0.0.0.1
+ * @version 0.0.0.2
  */
-public final class FlagParser {
+public final class FlagParser {   
+    /** Chooses between one of the parsable flags that the parameter "flag" is. */
+    static List<RuntimeFlag> parseFlag(RuntimeFlag flag, List<String> flagTokens) throws FlagParseException {
+        System.out.println("Flag tokens: " + flagTokens);
+        
+        switch (flag) {
+            case DIAGNOSE:
+                return diagnoseSubFlags(flagTokens);
+        }
+        
+        return null;
+    }
     
+    /** "Parses" the diagnose flag for sub flags. */
+    private static List<RuntimeFlag> diagnoseSubFlags(List<String> flagTokens) throws FlagParseException {
+        List<RuntimeFlag> result = new ArrayList<>();
+        String token;
+        boolean shouldParse = true;
+        
+        // remove the first two token as they are not important.
+        flagTokens.remove(0);
+        flagTokens.remove(0);
+        
+        if (flagTokens.isEmpty()) return null;
+        
+        token = flagTokens.get(0);
+        
+        if (!"(".equals(token))
+            throw new FlagParseException("Expected: \"(\" but received: \"" + token + "\".");
+        
+        flagTokens.remove(0);
+        
+        // continue until we only have one token left (it should be the RPAR)
+        while (flagTokens.size() != 1) {
+            token = flagTokens.remove(0);
+            
+            // see if it exists in RuntimeFlag
+            if (!RuntimeFlag.exists(token))
+                throw new FlagParseException("Expected a sub flag, but received: \"" + token + "\".");
+            
+            // add the sub flag to the result.
+            result.add(RuntimeFlag.get(token));
+            
+            // Check that we haven't reached the end of the list yet, incase we
+            // have more than one sub flag.
+            if (flagTokens.size() == 1) break;
+            
+            // we expect a comma next
+            token = flagTokens.remove(0);
+            
+            if (!",".equals(token))
+                throw new FlagParseException("Expected a \",\" but received: \"" + token + "\".");
+        }
+        
+        return result;
+    }
 }
