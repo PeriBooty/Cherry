@@ -30,4 +30,12 @@ package cherry.frontend.grammar;
  * @author SoraKatadzuma
  * @version 0.0.0.2
  */
-public interface Symbol {}
+public interface Symbol {
+    /**
+     * Returns the name of the symbol.
+     * 
+     * @return The name of the symbol, whether it be a {@code Terminal} or
+     *      {@code NonTerminal}.
+     */
+    String symbolName();
+}

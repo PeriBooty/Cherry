@@ -44,7 +44,33 @@ public enum NonTerminal implements Symbol {
     TYPE_NAME;
     
     /** The name of this {@code NonTerminal} in lowercase form. */
-    public final String name = name().toLowerCase();
+    private final String name = name().toLowerCase();
     /** The index value of this {@code NonTerminal} making referencing easier. */
     public final int index = ordinal();
+    
+    /**
+     * Returns the {@code NonTerminal} at the given index, null if the index does
+     * not exist.
+     * 
+     * @param index The index of the {@code NonTerminal} we are retrieving.
+     * @return The {@code NonTerminal} at the index provided.
+     */
+    public static NonTerminal get(int index) {
+        NonTerminal result = null;
+        
+        for (NonTerminal nt : values())
+            result = nt.index == index ? nt : null;
+        
+        return result;
+    }
+    
+    /**
+     * Inherited from {@code Symbol}.
+     * 
+     * @return The name of this symbol.
+     */
+    @Override
+    public String symbolName() {
+        return name;
+    }
 }

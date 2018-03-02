@@ -254,7 +254,7 @@ public enum Terminal implements Symbol {
     LARR("~>");
     
     /** The value of the given {@code Terminal}. */
-    public final String value;
+    private final String value;
     /** The index of this {@code Terminal}. */
     public final int index = ordinal();
     
@@ -265,6 +265,16 @@ public enum Terminal implements Symbol {
      */
     Terminal(String value) {
         this.value = value;
+    }
+    
+    /**
+     * Inherited from {@code Symbol}.
+     * 
+     * @return The name of this symbol.
+     */
+    @Override
+    public String symbolName() {
+        return value;
     }
 }
     
