@@ -47,12 +47,12 @@ public final class FlagScanner {
     /** Scans and breaks up the string passed to it. */
     static List<String> scan(String flagDetails) {
         List<String> result = new ArrayList<>();
-        boolean shouldScan = true;
         flag = flagDetails.toCharArray();
         
-        while (index != flag.length) {
+        for ( ; index != flag.length; ) {
             BUILDER.delete(0, BUILDER.length());
             
+            // just in case
             if (flag[index] == 0xFFFF) break;
             
             if (flag[index] == '-' && flag[index+1] == '-') {
@@ -68,11 +68,6 @@ public final class FlagScanner {
             
             if (Character.isDigit(flag[index])) {
                 result.add(number());
-                continue;
-            }
-            
-            if (isSpace(flag[index])) {
-                index++;
                 continue;
             }
             
@@ -97,7 +92,9 @@ public final class FlagScanner {
         }
         
         // compensate
-        index = index == flag.length ? index : index--;
+        if (index != flag.length) index--;
+        
+        if (index == flag.length && isDelimiter(current)) index--;
         
         return BUILDER.toString();
     }
@@ -115,21 +112,19 @@ public final class FlagScanner {
         }
         
         // compensate
-        index = index == flag.length ? index : index--;
+        if (index != flag.length) index--;
+        
+        if (index == flag.length && isDelimiter(current)) index--;
         
         return BUILDER.toString();
     }
     
     /** returns a delimiter. */
     static String delimiter() {
-        current = flag[index++];
+        if (index != flag.length) current = flag[index++];
+        
         BUILDER.append(current);
         return BUILDER.toString();
-    }
-    
-    /** checks if the current character is a space. */
-    static boolean isSpace(char curr) {
-        return curr == ' ' || curr == '\t' || curr == '\r' || curr == '\n';
     }
     
     /** checks if the current character is a delimiter. */

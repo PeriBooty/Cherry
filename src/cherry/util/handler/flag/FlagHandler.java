@@ -23,10 +23,7 @@
  */
 package cherry.util.handler.flag;
 
-import cherry.frontend.grammar.Token;
-import cherry.frontend.lexer.Lexer;
 import cherry.util.exception.FlagDoesNotExistException;
-import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
@@ -94,7 +91,7 @@ public final class FlagHandler {
     }
     
     /** A place to put all our raised runtime flags. */
-    public final EnumSet<RuntimeFlag> raisedFlags = EnumSet.noneOf(RuntimeFlag.class);
+    public static final EnumSet<RuntimeFlag> raisedFlags = EnumSet.noneOf(RuntimeFlag.class);
     
     /**
      * @param flags The flags that will be examined.

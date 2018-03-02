@@ -88,6 +88,11 @@ public final class FlagParser {
                 throw new FlagParseException("Expected a \",\" but received: \"" + token + "\".");
         }
         
+        token = flagTokens.remove(0);
+        
+        if (!")".equals(token))
+            throw new FlagParseException("Expected: \")\" but received: \"" + token + "\".");
+        
         return result;
     }
 }
