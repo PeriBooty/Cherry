@@ -23,8 +23,11 @@
  */
 package cherry.frontend.parser;
 
+import cherry.frontend.grammar.Grammar;
 import cherry.frontend.grammar.Token;
 import cherry.frontend.lexer.Lexer;
+import cherry.util.handler.diagnostic.DiagnosticHandler;
+import cherry.util.handler.flag.FlagHandler;
 import cherry.util.object.ParseTree;
 import java.io.File;
 import java.util.List;
@@ -65,7 +68,8 @@ public final class Parser implements Callable<ParseTree> {
         // Lex the file for tokens and start the actual parsing process.
         tokens = new Lexer(file).lex();
         
-        for (Token tok : tokens) System.out.println(tok);
+        if (FlagHandler.raisedFlags.contains(FlagHandler.RuntimeFlag.TOKENS))
+            DiagnosticHandler.print(tokens, file.getName());
         
         return null; // only temporary
     }

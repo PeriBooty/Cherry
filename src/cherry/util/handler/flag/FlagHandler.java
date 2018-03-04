@@ -51,6 +51,11 @@ public final class FlagHandler {
         DIAGNOSE(true, false),
         /**
          * A sub flag that tells the compiler that it should output data about
+         * the tokens found by the files that it takes in.
+         */
+        TOKENS(false, true),
+        /**
+         * A sub flag that tells the compiler that it should output data about
          * the FIRST sets built by the grammar.
          */
         FIRST(false, true),
