@@ -71,6 +71,12 @@ public final class Parser implements Callable<ParseTree> {
         if (FlagHandler.raisedFlags.contains(FlagHandler.RuntimeFlag.TOKENS))
             DiagnosticHandler.print(tokens, file.getName());
         
+        Grammar.fillFirsts();
+        
+        Grammar.firsts.entrySet().forEach((entry) -> {
+            System.out.println(entry);
+        });
+        
         return null; // only temporary
     }
 }

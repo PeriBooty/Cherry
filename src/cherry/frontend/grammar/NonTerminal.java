@@ -41,7 +41,9 @@ public enum NonTerminal implements Symbol {
     /** Defines a namespace for the current code until the next namespace declaration. */
     PACKAGING,
     /** Defines a single identifier or a packaged identifier. */
-    TYPE_NAME;
+    TYPE_NAME,
+    /** The extended packaged identifier. */
+    EXT_TYPE_NAME;
     
     /** The name of this {@code NonTerminal} in lowercase form. */
     private final String name = name().toLowerCase();
