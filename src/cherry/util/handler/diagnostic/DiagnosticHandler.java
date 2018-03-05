@@ -23,9 +23,16 @@
  */
 package cherry.util.handler.diagnostic;
 
+import cherry.frontend.grammar.NonTerminal;
+import cherry.frontend.grammar.Symbol;
 import cherry.frontend.grammar.Token;
+import cherry.util.handler.flag.FlagHandler.RuntimeFlag;
 import java.io.File;
+import java.io.IOException;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -33,6 +40,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -116,7 +124,115 @@ public final class DiagnosticHandler {
             StreamResult result = new StreamResult(new File(subroot, filename + ".xml"));
             transformer.transform(source, result);
         } catch (ParserConfigurationException | TransformerException | DOMException ex) {
-            Logger.getLogger(DiagnosticHandler.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            Logger.getLogger(DiagnosticHandler.class.getName())
+                  .log(Level.SEVERE, ex.getMessage(), ex);
+        }
+    }
+    
+    /**
+     * Creates a diagnostic file {@code raised_flags.xml} with contents pertaining
+     * to the flags raised by the {@code FlagHandler}.
+     * 
+     * @param raisedFlags
+     */
+    public static void print(EnumSet<RuntimeFlag> raisedFlags) {
+        File subroot = new File(ROOT,"command_line");
+
+        // check if the root folder "/diagnostics" exists.
+        if (!ROOT.exists()) ROOT.mkdir();
+
+        // check if the subroot "lexer" exists.
+        if (!subroot.exists()) subroot.mkdir();
+        
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            Document doc = docBuilder.newDocument();
+            
+            Element rootElement = doc.createElement("flags");
+            doc.appendChild(rootElement);
+            
+            raisedFlags.forEach((flag) -> {
+                Element flagElement = doc.createElement("flag");
+                rootElement.appendChild(flagElement);
+            });
+            
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+            
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File(subroot, "raised_flags.xml"));
+            transformer.transform(source, result);
+        } catch (ParserConfigurationException | TransformerException | DOMException ex) {
+            Logger.getLogger(DiagnosticHandler.class.getName())
+                  .log(Level.SEVERE, ex.getMessage(), ex);
+        }
+    }
+    
+    /**
+     * Prints to a file one of the grammar attributes: FIRST or FOLLOW, respectively
+     * naming the file "FIRSTS.xml" or "FOLLOWS.xml" in a folder named "diagnostics/~".
+     * 
+     * @param gramAttr The grammar attributes, either FIRST or FOLLOW, that will
+     *      be printed to a file in the diagnostics folder.
+     * @param firsts Tells whether this is the FIRST set or not, useful for naming
+     *      the output file since both FIRST and FOLLOW are the same data type.
+     */
+    public static void print(Map<NonTerminal, Set<Symbol>> gramAttr, boolean firsts) {
+        File subroot = new File(ROOT, "grammar_attributes");
+        File file;
+        
+        // check if root folder "/diagnostics" exists
+        if (!ROOT.exists()) ROOT.mkdir();
+        
+        // check if subroot "/grammar_attributes" exists
+        if (!subroot.exists()) subroot.mkdir();
+        
+        if (firsts) {
+            file = new File(subroot, "FIRSTS.xml");
+        } else {
+            file = new File(subroot, "FOLLOWS.xml");
+        }
+        
+        try {
+            // Do file writing.
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            Document doc = docBuilder.newDocument();
+            
+            // Root of this file.
+            Element rootElement = doc.createElement("firsts");
+            doc.appendChild(rootElement);
+            
+            Attr type = doc.createAttribute("type");
+            type.setValue("Cherry");
+            rootElement.setAttributeNode(type);
+            
+            gramAttr.keySet().forEach((nt) -> {
+                Element node = doc.createElement(nt.name());
+                rootElement.appendChild(node);
+                
+                Set<Symbol> set = gramAttr.get(nt);
+                
+                set.forEach((sym) -> {
+                    Element symbol = doc.createElement(sym.symbolName());
+                    node.appendChild(symbol);
+                });
+            });
+            
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(file);
+            transformer.transform(source, result);
+            
+            StreamResult consoleResult = new StreamResult(System.out);
+            transformer.transform(source, consoleResult);
+        } catch (ParserConfigurationException | TransformerException | DOMException ex) {
+            Logger.getLogger(DiagnosticHandler.class.getName()).log(Level.WARNING, ex.getMessage(), ex);
         }
     }
 }
