@@ -37,8 +37,6 @@ import java.util.List;
 public final class FlagParser {   
     /** Chooses between one of the parsable flags that the parameter "flag" is. */
     static List<RuntimeFlag> parseFlag(RuntimeFlag flag, List<String> flagTokens) throws FlagParseException {
-        System.out.println("Flag tokens: " + flagTokens);
-        
         switch (flag) {
             case DIAGNOSE:
                 return diagnoseSubFlags(flagTokens);

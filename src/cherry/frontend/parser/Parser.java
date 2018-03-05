@@ -73,9 +73,8 @@ public final class Parser implements Callable<ParseTree> {
         
         Grammar.fillFirsts();
         
-        Grammar.firsts.entrySet().forEach((entry) -> {
-            System.out.println(entry);
-        });
+        if (FlagHandler.raisedFlags.contains(FlagHandler.RuntimeFlag.FIRST))
+            DiagnosticHandler.print(Grammar.firsts, true);
         
         return null; // only temporary
     }

@@ -218,19 +218,28 @@ public final class DiagnosticHandler {
                 Set<Symbol> set = gramAttr.get(nt);
                 
                 set.forEach((sym) -> {
-                    Element symbol = doc.createElement(sym.symbolName());
+                    String name = sym.symbolName();
+                    
+                    if (".".equals(name))
+                        name = "dot";
+                    
+                    if ("\u03B5".equals(name))
+                        name = "epsilon";
+                    
+                    Element symbol = doc.createElement(name);
                     node.appendChild(symbol);
                 });
             });
             
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+            
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+            
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(file);
             transformer.transform(source, result);
-            
-            StreamResult consoleResult = new StreamResult(System.out);
-            transformer.transform(source, consoleResult);
         } catch (ParserConfigurationException | TransformerException | DOMException ex) {
             Logger.getLogger(DiagnosticHandler.class.getName()).log(Level.WARNING, ex.getMessage(), ex);
         }
