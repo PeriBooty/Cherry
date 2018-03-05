@@ -256,7 +256,7 @@ public enum Terminal implements Symbol {
     /** The value of the given {@code Terminal}. */
     private final String value;
     /** The index of this {@code Terminal}. */
-    public final int index = ordinal();
+    private final int index = ordinal();
     
     /**
      * Constructs a new {@code Terminal} with the given value.
@@ -275,6 +275,16 @@ public enum Terminal implements Symbol {
     @Override
     public String symbolName() {
         return value;
+    }
+    
+    /**
+     * Inherited from {@code Symbol}.
+     * 
+     * @return The index of this symbol.
+     */
+    @Override
+    public int getIndex() {
+        return index;
     }
 }
     

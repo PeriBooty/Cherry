@@ -38,4 +38,11 @@ public interface Symbol {
      *      {@code NonTerminal}.
      */
     String symbolName();
+    
+    /**
+     * Returns the index this symbol resides at, regardless of it's instance.
+     * 
+     * @return This symbols index.
+     */
+    int getIndex();
 }

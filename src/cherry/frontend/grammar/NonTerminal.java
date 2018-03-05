@@ -46,7 +46,7 @@ public enum NonTerminal implements Symbol {
     /** The name of this {@code NonTerminal} in lowercase form. */
     private final String name = name().toLowerCase();
     /** The index value of this {@code NonTerminal} making referencing easier. */
-    public final int index = ordinal();
+    private final int index = ordinal();
     
     /**
      * Returns the {@code NonTerminal} at the given index, null if the index does
@@ -59,7 +59,7 @@ public enum NonTerminal implements Symbol {
         NonTerminal result = null;
         
         for (NonTerminal nt : values())
-            result = nt.index == index ? nt : null;
+            if (nt.index == index) result = nt;
         
         return result;
     }
@@ -72,5 +72,15 @@ public enum NonTerminal implements Symbol {
     @Override
     public String symbolName() {
         return name;
+    }
+    
+    /**
+     * Inherited from {@code Symbol}.
+     * 
+     * @return The index of this symbol.
+     */
+    @Override
+    public int getIndex() {
+        return index;
     }
 }
