@@ -57,7 +57,15 @@ public final class FlagParser {
         flagTokens.remove(0);
         flagTokens.remove(0);
         
-        if (flagTokens.isEmpty()) return null;
+        // set all diagnostic subflags
+        if (flagTokens.isEmpty()) {
+            result.add(RuntimeFlag.FILES);
+            result.add(RuntimeFlag.FLAGS);
+            result.add(RuntimeFlag.TOKENS);
+            result.add(RuntimeFlag.FIRST);
+            result.add(RuntimeFlag.FOLLOW);
+            return result;
+        }
         
         token = flagTokens.get(0);
         
