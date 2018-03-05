@@ -24,6 +24,7 @@
 package cherry.util.handler.flag;
 
 import cherry.util.exception.FlagDoesNotExistException;
+import cherry.util.handler.diagnostic.DiagnosticHandler;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +50,21 @@ public final class FlagHandler {
          * {@code --diagnose} are: {@code FIRST, FOLLOW}.
          */
         DIAGNOSE(true, false),
+        /**
+         * The {@code --debug} allows the compiler to perform debugging actions
+         * in the compiler itself and to open a debugging program that 
+         */
+        DEBUG(false, false),
+        /**
+         * A sub flag that tells the compiler that it should output data about
+         * the flags on the command line.
+         */
+        FLAGS(false, true),
+        /**
+         * A sub flag that tells the compiler that it should output data about
+         * the files on the command line.
+         */
+        FILES(false, true),
         /**
          * A sub flag that tells the compiler that it should output data about
          * the tokens found by the files that it takes in.
@@ -105,7 +121,9 @@ public final class FlagHandler {
      */
     public FlagHandler(String... flags) throws Exception {
         raiseFlags(flags);
-        System.out.println("Flags raised: " + raisedFlags);
+        
+        if (raisedFlags.contains(RuntimeFlag.FLAGS))
+            DiagnosticHandler.print(raisedFlags);
     }
     
     /**
