@@ -33,33 +33,15 @@ import javafx.util.Pair;
  * Class for any compile errors
  * 
  * @author PeriBooty
- * @version 0.0.0.1
+ * @version 0.0.0.2
  */
 public class CompilerExceptionHandler {
-    private final List<Pair<Throwable, ExceptionLevel>> exceptions = new LinkedList<>();
-    private final ExceptionLevel minLevel;
+    private static final List<Pair<Throwable, ExceptionLevel>> exceptions = new LinkedList<>();
     
     public static enum ExceptionLevel {
         LOW,
         WARN,
         SEVERE
-    }
-    
-    /**
-     * Constructor 
-     * 
-     * @param level The minimum exception level
-     */
-    public CompilerExceptionHandler(ExceptionLevel level) {
-        minLevel = level;
-    }
-    
-    /**
-     * Constructor
-     * @see #CompilerExceptionHandler(cherry.util.exception.CompilerExceptionHandler.ExceptionLevel)
-     */
-    public CompilerExceptionHandler() {
-       minLevel = ExceptionLevel.WARN;
     }
     
     /**
@@ -69,7 +51,7 @@ public class CompilerExceptionHandler {
      * @param severity The level of the exception
      * @throws Exception if the {@link ExceptionLevel} is {@link ExceptionLevel#SEVERE}
      */
-    public void addException(Throwable exception, ExceptionLevel severity) throws Exception {
+    public static void addException(Throwable exception, ExceptionLevel severity) throws Exception {
         if(severity == ExceptionLevel.SEVERE) {
             report();
             throw new Exception("Exception came in as SEVERE", exception);
@@ -78,23 +60,23 @@ public class CompilerExceptionHandler {
         }
     }
     
-    public void addException(String message, ExceptionLevel severity) throws Exception {
+    public static void addException(String message, ExceptionLevel severity) throws Exception {
         addException(new Throwable(message), severity);
     }
     
-    public void addException(String message, int line, int column, ExceptionLevel severity) throws Exception {
+    public static void addException(String message, int line, int column, ExceptionLevel severity) throws Exception {
         addException("(" + line + ":" + column + ") " + message, severity);
     }
     
-    public void addException(String message, Token token, ExceptionLevel severity) throws Exception {
+    public static void addException(String message, Token token, ExceptionLevel severity) throws Exception {
         addException(message + "\n\tat " + token.value + "(" + token.filename + ":" + token.line + ")", severity);
     }
     
     /**
      * @see #report(cherry.util.exception.CompilerExceptionHandler.ExceptionLevel) 
      */
-    public void report() {
-        report(minLevel);
+    public static void report() {
+        report(ExceptionLevel.WARN); // Warn is the default.
     }
     
     /**
@@ -102,11 +84,25 @@ public class CompilerExceptionHandler {
      * 
      * @param level The minimum level to print.
      */
-    public void report(ExceptionLevel level) {
+    public static void report(ExceptionLevel level) {
         //System.out.println("\nExceptions under the " + CallingClass.getName() + " class:"); || You might wanna like, uncomment this line if you have something in mind
         exceptions.stream().filter((exception) -> (exception.getValue().ordinal() >= level.ordinal())).map((exception) -> String.format("[%s] %s", exception.getValue().name(), exception.getKey().getMessage())).forEachOrdered((output) -> {
             System.out.println(output);
         });
         System.out.println(); // To seperate the messages
+    }
+    
+    public static void clear() {
+        exceptions.clear();
+    }
+    
+    public static void reportAndClear() {
+        report();
+        clear();
+    }
+    
+    public static void reportAndClear(ExceptionLevel level) {
+        report(level);
+        clear();
     }
 }
